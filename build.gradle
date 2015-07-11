@@ -9,6 +9,8 @@ subprojects {
     }
 
     dependencies {
+        compile "com.google.inject:guice:3.0"
         testCompile group: 'junit', name: 'junit', version: '4.11'
+        testCompile "org.mockito:mockito-all:1.9.5"
     }
 }
