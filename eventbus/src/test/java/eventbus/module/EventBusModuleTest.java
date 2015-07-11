@@ -8,6 +8,7 @@ import eventbus.eventhandler.EventHandlerRegistry;
 import org.junit.Assert;
 import org.junit.Test;
 
+@SuppressWarnings("unchecked")
 public class EventBusModuleTest {
 
   @Test
