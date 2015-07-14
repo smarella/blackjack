@@ -39,7 +39,7 @@ public class Card {
     return suite.toString() + symbol.toString();
   }
 
-  static Card create(Suite suite, Symbol symbol) {
+  public static Card create(Suite suite, Symbol symbol) {
     return new Card(suite, symbol);
   }
 }

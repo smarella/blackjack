@@ -2,4 +2,5 @@ rootProject.name = 'blackjack'
 
 include "cards"
 include 'eventbus'
+include 'game'
 
