@@ -19,7 +19,7 @@ $PROJECT_HOME/gradlew game:run # PROJECT_HOME being the root of your git clone
 
 #####House Rules
 1. Blackjack pays 3 times the bet amount placed on a hand.
-2. Dealer hits until his hand exceeds 17, with one Ace in dealer's hand counted as 11.
+2. Dealer hits until his hand exceeds 17, with one Ace in dealer's hand counted as 11. e.g:
     - if dealer has two Aces, count is 12 (dealer continues to hit, since count < 17)
     - if dealer has a Ace and a Jack, count is 21 (black jack)
     - if dealer has a Ace and eight, count is 18 (dealer stops hitting at this point)
