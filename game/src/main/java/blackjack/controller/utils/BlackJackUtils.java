@@ -23,8 +23,8 @@ public class BlackJackUtils {
     return false;
   }
 
-  public static boolean isSplittable(Hand hand) {
-    if (hand.getCards().size() == 2) {
+  public static boolean isSplittable(Hand hand, int cashAvailable) {
+    if (cashAvailable >= hand.getBet() && hand.getCards().size() == 2) {
       Card one = hand.getCards().get(0);
       Card two = hand.getCards().get(1);
       return one.getSymbol().equals(two.getSymbol()) ||

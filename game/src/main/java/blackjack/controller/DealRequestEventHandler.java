@@ -45,7 +45,7 @@ public class DealRequestEventHandler extends PlayerActionEventHandler<DealReques
       game.setState(Game.State.PLAYER_WON);
       BlackJackUtils.payPlayerOnBlackJack(player, playerHand);
       player.setAvailableActions(Player.Action.NEW_GAME, Player.Action.QUIT);
-    } else if (BlackJackUtils.isSplittable(playerHand)) {
+    } else if (BlackJackUtils.isSplittable(playerHand, player.getAmountAvailable())) {
       playerHand.setState(Hand.State.DEALT);
       player.setAvailableActions(
         Player.Action.HIT,

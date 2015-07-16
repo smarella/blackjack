@@ -66,6 +66,7 @@ public class DealRequestEventHandlerTest {
     TestHelper helper = new TestHelper();
     helper.createTestFor(new DealRequestEvent())
       .setupNewGameWithAmount(100)
+      .placeBet(50)
       .withNextCardsFromDeckBeing(create(CLUB, FOUR), create(HEART, ACE), create(DIAMOND, FOUR));
 
     // handle event
@@ -83,6 +84,34 @@ public class DealRequestEventHandlerTest {
       .assertDealerHandStateMovedTo(Hand.State.DEALT)
       .assertPlayerActiveHandStateMovedTo(Hand.State.DEALT)
       .assertPlayersAvailableActions(HIT, STAND, SPLIT);
+  }
+
+  @Test
+  public void testDeal_NoSplitWhenNoCash() {
+    TestHelper helper = new TestHelper();
+    helper.createTestFor(new DealRequestEvent())
+      .setupNewGameWithAmount(100)
+      .placeBet(51)
+      .withNextCardsFromDeckBeing(create(CLUB, TWO), create(HEART, FOUR), create(DIAMOND, TWO));
+
+    // handle event
+    helper.performPlayerAction();
+
+    // verify hands
+    helper.assertDealerHandIs(create(HEART, FOUR));
+    helper.assertPlayerActiveHandIs(create(CLUB, TWO), create(DIAMOND, TWO));
+
+    // verify amount left
+    helper.assertPlayerHasAmount(49);
+
+    // transition state
+    helper.performStateTransition();
+
+    // verify state transition
+    helper.assertGameStateMovedTo(Game.State.PLAYERS_TURN)
+      .assertDealerHandStateMovedTo(Hand.State.DEALT)
+      .assertPlayerActiveHandStateMovedTo(Hand.State.DEALT)
+      .assertPlayersAvailableActions(HIT, STAND);  // no split
   }
 
   @Test
@@ -108,6 +137,5 @@ public class DealRequestEventHandlerTest {
       .assertPlayerActiveHandStateMovedTo(Hand.State.DEALT)
       .assertPlayersAvailableActions(HIT, STAND);
   }
-
 
 }
